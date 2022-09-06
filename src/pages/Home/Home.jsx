@@ -9,7 +9,7 @@ function Home() {
   return (
     <>
       <Header />;
-      <CharacterTable data={data} />
+      <CharacterTable data={data} status={status} />
     </>
   );
 }

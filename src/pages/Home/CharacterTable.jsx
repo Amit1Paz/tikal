@@ -1,26 +1,21 @@
-import { Box, Skeleton } from '@mui/material';
+import { Box, Skeleton, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import Table, {
-  TableBody,
-  TableCell,
-  TableRow,
+    TableBody,
+    TableCell,
+    TableRow
 } from '../../components/Table/Table';
-import { fetchDimension } from '../../util/services/RickAndMorty.service';
 
-function CharacterTable({ data }) {
-  const [mostUnpopularCharecter, setMostUnpopularCharecter] = useState({});
-
-    useEffect(() => {
-        if (mostUnpopularCharecter) console.log(mostUnpopularCharecter)
-    }, [mostUnpopularCharecter])
+function CharacterTable({ data, status }) {
+  const [mostUnpopularCharacter, setMostUnpopularCharacter] = useState();
+  const planet = 'Earth';
+  const dimension = 'C-137';
 
   useEffect(() => {
     if (!data) return;
 
     const { name, origin, episode } = findMostUnpopularCharacter(data);
-    const dimension = findDimension(origin.url);
-    
-    setMostUnpopularCharecter({
+    setMostUnpopularCharacter({
       name: name,
       origin: origin.name,
       dimension: dimension,
@@ -30,7 +25,7 @@ function CharacterTable({ data }) {
 
   const findMostUnpopularCharacter = (data) => {
     const EarthOriginCharacters = data.filter(
-      (character) => character.origin.name === 'Earth (C-137)'
+      (character) => character.origin.name === `${planet} (${dimension})`
     );
 
     let mostUnpopular = EarthOriginCharacters[0];
@@ -45,51 +40,44 @@ function CharacterTable({ data }) {
     return mostUnpopular;
   };
 
-  const findDimension = async (url) => {
-    try {
-      const dimension = await fetchDimension(url);
-      return dimension;
-    } catch (error) {
-      return error;
-    }
-  };
+  if (status === 'error') return <Typography color='error'>Error</Typography>;
 
   return (
     <Box>
-      {/* <Table>
+      <Table>
         <TableBody>
           <TableRow>
             <TableCell variant='head' width='50%'>
               Character name
             </TableCell>
             <TableCell>
-              {!mostUnpopularCharacter && <Skeleton variant='text' />}
-              {character && character.name}
+              {status === 'loading' && <Skeleton variant='text' />}
+              {mostUnpopularCharacter && mostUnpopularCharacter.name}
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell variant='head'>Origin name</TableCell>
             <TableCell>
-              {!mostUnpopularCharacter && <Skeleton variant='text' />}
-              {character && character.origin}
+              {status === 'loading' && <Skeleton variant='text' />}
+              {mostUnpopularCharacter && mostUnpopularCharacter.origin}
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell variant='head'>Origin dimension</TableCell>
             <TableCell>
-              {!mostUnpopularCharacter && <Skeleton variant='text' />}
-              {character && character.dimension}
+              {status === 'loading' && <Skeleton variant='text' />}
+              {mostUnpopularCharacter && mostUnpopularCharacter.dimension}
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell variant='head'>Popularity</TableCell>
             <TableCell>
-              {!mostUnpopularCharacter && <Skeleton variant='text' />}
-              {character && character.episodes}
+              {status === 'loading' && <Skeleton variant='text' />}
+              {mostUnpopularCharacter && mostUnpopularCharacter.episodes}
             </TableCell>
           </TableRow>
         </TableBody>
-      </Table> */}
+      </Table>
     </Box>
   );
 }
