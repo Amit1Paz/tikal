@@ -1,10 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import theme from './util/theme/theme';
 
 function App() {
   return (
-    <div>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+    </ThemeProvider>
   );
 }
 
