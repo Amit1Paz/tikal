@@ -1,4 +1,3 @@
-import axios from 'axios';
 import axiosInstance from '../api/axiosInstance';
 
 async function getNumOfCharacter(url) {
@@ -23,13 +22,5 @@ async function fetchAllCharacters() {
   }
 }
 
-async function fetchDimension(location) {
-  try {
-    const { data: { dimension } } = await axios.get(`${location}`);
-    return dimension;
-  } catch (error) {
-    return (error);
-  }
-}
+export { fetchAllCharacters };
 
-export {fetchAllCharacters, fetchDimension};

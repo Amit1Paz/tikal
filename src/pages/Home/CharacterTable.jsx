@@ -1,9 +1,9 @@
-import { Box, Skeleton, Typography } from '@mui/material';
+import { Box, Skeleton } from '@mui/material';
 import { useEffect, useState } from 'react';
 import Table, {
-    TableBody,
-    TableCell,
-    TableRow
+  TableBody,
+  TableCell,
+  TableRow,
 } from '../../components/Table/Table';
 
 function CharacterTable({ data, status }) {
@@ -39,8 +39,6 @@ function CharacterTable({ data, status }) {
     }
     return mostUnpopular;
   };
-
-  if (status === 'error') return <Typography color='error'>Error</Typography>;
 
   return (
     <Box>
