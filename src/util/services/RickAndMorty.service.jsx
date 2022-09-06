@@ -1,3 +1,4 @@
+import axios from 'axios';
 import axiosInstance from '../api/axiosInstance';
 
 async function getNumOfCharacter(url) {
@@ -15,11 +16,20 @@ async function fetchAllCharacters() {
     const numOfCharacters = await getNumOfCharacter(url);
     const idsArray = [];
     for (let i = 1; i <= numOfCharacters; i++) idsArray.push(i);
-    const { data } = await axiosInstance(`/character/${idsArray}`);
+    const { data } = await axiosInstance(`${url}/${idsArray}`);
     return data;
   } catch (error) {
     return error;
   }
 }
 
-export default fetchAllCharacters;
+async function fetchDimension(location) {
+  try {
+    const { data: { dimension } } = await axios.get(`${location}`);
+    return dimension;
+  } catch (error) {
+    return (error);
+  }
+}
+
+export {fetchAllCharacters, fetchDimension};

@@ -1,18 +1,31 @@
 import { Box, Skeleton } from '@mui/material';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Table, {
   TableBody,
   TableCell,
   TableRow,
 } from '../../components/Table/Table';
+import { fetchDimension } from '../../util/services/RickAndMorty.service';
 
 function CharacterTable({ data }) {
   const [mostUnpopularCharecter, setMostUnpopularCharecter] = useState({});
 
+    useEffect(() => {
+        if (mostUnpopularCharecter) console.log(mostUnpopularCharecter)
+    }, [mostUnpopularCharecter])
+
   useEffect(() => {
     if (!data) return;
-    findMostUnpopularCharacter(data);
+
+    const { name, origin, episode } = findMostUnpopularCharacter(data);
+    const dimension = findDimension(origin.url);
+    
+    setMostUnpopularCharecter({
+      name: name,
+      origin: origin.name,
+      dimension: dimension,
+      episodes: episode.length,
+    });
   }, [data]);
 
   const findMostUnpopularCharacter = (data) => {
@@ -29,8 +42,16 @@ function CharacterTable({ data }) {
         if (character.episode.length === 1) break;
       }
     }
-
     return mostUnpopular;
+  };
+
+  const findDimension = async (url) => {
+    try {
+      const dimension = await fetchDimension(url);
+      return dimension;
+    } catch (error) {
+      return error;
+    }
   };
 
   return (

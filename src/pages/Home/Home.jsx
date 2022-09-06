@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import Header from '../../components/Header/Header';
-import fetchAllCharacters from '../../util/services/RickAndMorty.service';
+import { fetchAllCharacters } from '../../util/services/RickAndMorty.service';
 import CharacterTable from './CharacterTable';
 
 function Home() {
