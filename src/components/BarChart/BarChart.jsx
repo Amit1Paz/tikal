@@ -1,15 +1,8 @@
 import { Box, Typography } from '@mui/material';
-import { StyledBarChart, StyledBar, StyledLegend } from './BarChart.styled';
+import { StyledBarChart, StyledBar, StyledLegend, StyledLegendItem } from './BarChart.styled';
 import { v4 as uuidv4 } from 'uuid';
 
-function BarChart({
-  children,
-  height,
-  display,
-  alignItems,
-  justifyContent,
-  ...rest
-}) {
+function BarChart({ children, height, display, alignItems, justifyContent, ...rest }) {
   return (
     <StyledBarChart
       height={height}
@@ -32,10 +25,10 @@ function Legend({ legendArray, ...rest }) {
     <StyledLegend {...rest}>
       {legendArray.map((item) => {
         return (
-          <Box key={uuidv4()} display='flex' alignItems='center'>
-            <Box bgcolor={item.color} width='1rem' height='1rem' mr={1} />
+          <StyledLegendItem key={uuidv4()}>
+            <Box bgcolor={item.color} width='1rem' height='1rem' />
             <Typography>{item.name}</Typography>
-          </Box>
+          </StyledLegendItem>
         );
       })}
     </StyledLegend>

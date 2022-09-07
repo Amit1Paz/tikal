@@ -37,9 +37,31 @@ const StyledLegend = styled(Box)`
   margin-left: 1rem;
 
   @media (max-width: 950px) {
-    margin-top: 1rem;
+    width: 100%;
+    margin: 1rem 0 0 0;
     display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 500px) {
+    display: block;
   }
 `;
 
-export { StyledBarChart, StyledBar, StyledLegend };
+const StyledLegendItem = styled(Box)`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  @media (max-width: 950px) {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  @media (max-width: 500px) {
+    display: flex;
+    flex-direction: row;
+  }
+`;
+
+export { StyledBarChart, StyledBar, StyledLegend, StyledLegendItem };

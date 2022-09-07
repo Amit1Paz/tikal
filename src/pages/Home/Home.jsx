@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useQuery } from 'react-query';
 import Header from '../../components/Header/Header';
 import { fetchAllCharacters } from '../../util/services/RickAndMorty.service';
+import CharacterChart from './CharacterChart';
 import CharacterTable from './CharacterTable';
 
 function Home() {
@@ -29,6 +30,7 @@ function Home() {
         </Tabs>
         <Box px='20vw'>
           {tabValue === 0 && <CharacterTable data={data} status={status} />}
+          {tabValue === 1 && <CharacterChart data={data} status={status} />}
         </Box>
       </Box>
     </>
