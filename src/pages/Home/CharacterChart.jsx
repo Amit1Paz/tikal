@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Skeleton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -40,6 +40,18 @@ function CharacterChart({ data, status }) {
     setChartData(sortedChartData);
   };
 
+  if (status === 'loading') {
+    return (
+      <Box display='flex' justifyContent='space-around'>
+        <Skeleton variant='rectangular' height='15rem' width='2rem' />
+        <Skeleton variant='rectangular' height='15rem' width='2rem' />
+        <Skeleton variant='rectangular' height='15rem' width='2rem' />
+        <Skeleton variant='rectangular' height='15rem' width='2rem' />
+        <Skeleton variant='rectangular' height='15rem' width='2rem' />
+      </Box>
+    );
+  }
+
   return (
     <>
       <StyledContainer
@@ -58,7 +70,7 @@ function CharacterChart({ data, status }) {
                   key={uuidv4()}
                   width='2rem'
                   bgcolor={color}
-                  height={`${(episodes / maxEpisodes) * 100}%`}
+                  minHeight={`${(episodes / maxEpisodes) * 100}%`}
                   color='white'
                 >
                   {episodes}
