@@ -1,5 +1,6 @@
 # Tikal Code Challenge
 Rick and Morty's assignment
+
 ![Rick and Morty- Video](https://media.giphy.com/media/Mp4ccPmBke98HARlmO/giphy.gif)
 
 
