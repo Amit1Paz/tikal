@@ -11,7 +11,7 @@ Rick and Morty's assignment
 
 ## Part one
 ### Fetch the data
-I had to find Rick and Morty's most unpopular character using an [API]().
+I had to find Rick and Morty's most unpopular character using an [API](https://rickandmortyapi.com/).
 
 After examining the documentation, I realized that the API returns the data in groups of 20 characters. Thus, finding all the characters will make me call the API over 40 times.
 I then considered fetching the data using the location schema since there are fewer locations, which means fewer API calls. However, I noticed a difference between the residents' array in the location schema and the origin in the character schema.
