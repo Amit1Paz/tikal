@@ -70,7 +70,7 @@ function CharacterChart({ data, status }) {
                   key={uuidv4()}
                   width='2rem'
                   bgcolor={color}
-                  minHeight={`${(episodes / maxEpisodes) * 100}%`}
+                  height={`${(episodes / maxEpisodes) * 100}%`}
                   color='white'
                 >
                   {episodes}

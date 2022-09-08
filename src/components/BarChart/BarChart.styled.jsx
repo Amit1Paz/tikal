@@ -13,6 +13,7 @@ const StyledBarChart = styled(Box)`
     width: 100%;
   }
 `;
+
 const barAnimation = (height) => keyframes`
   0% { height: 0; }
   100% { height: ${height}; }
